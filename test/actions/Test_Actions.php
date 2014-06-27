@@ -204,6 +204,62 @@ class Test_Actions extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function can_confbridge_kick()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeKick',
+            'actionid: 1432.123',
+            'channel: channel',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeKickAction('channel', 'conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_list()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeList',
+            'actionid: 1432.123',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeListAction('conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_list_rooms()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeListRooms',
+            'actionid: 1432.123',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeListRoomsAction();
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_lock()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeLock',
+            'actionid: 1432.123',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeLockAction('conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
     public function can_confbridge_mute()
     {
         $write = array(implode("\r\n", array(
@@ -214,6 +270,65 @@ class Test_Actions extends \PHPUnit_Framework_TestCase
             ''
         )));
         $action = new \PAMI\Message\Action\ConfbridgeMuteAction('channel', 'conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_set_single_video_src()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeSetSingleVideoSrc',
+            'actionid: 1432.123',
+            'channel: channel',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeSetSingleVideoSrcAction('channel', 'conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_start_record()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeStartRecord',
+            'actionid: 1432.123',
+            'conference: conference',
+            'recordfile: record_file',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeStartRecordAction('conference');
+        $action->setRecordFile('record_file');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_stop_record()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeStopRecord',
+            'actionid: 1432.123',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeStopRecordAction('conference');
+        $client = $this->_start($write, $action);
+    }
+    /**
+     * @test
+     */
+    public function can_confbridge_unlock()
+    {
+        $write = array(implode("\r\n", array(
+            'action: ConfbridgeUnlock',
+            'actionid: 1432.123',
+            'conference: conference',
+            ''
+        )));
+        $action = new \PAMI\Message\Action\ConfbridgeUnlockAction('conference');
         $client = $this->_start($write, $action);
     }
     /**
